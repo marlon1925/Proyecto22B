@@ -1,6 +1,8 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class Inicio extends  JFrame {
     private JButton Admin;
@@ -8,15 +10,43 @@ public class Inicio extends  JFrame {
     private JLabel Buho;
     private JPanel panel;
 
+    PreparedStatement ps;
+    ResultSet rs;
+    Statement st;
+    Connection con;
+
+
     public Inicio(){
         super("LOGIN");
         setContentPane(panel);
         Admin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                admin frame = new admin();
+                frame.setContentPane(frame.admin);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.pack();
+                frame.setSize(400, 200);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+                dispose();
             }
         });
+    }
+
+    public static Connection getConection(){
+        Connection con = null;
+        String base= "minimarket";
+        String url = "jdbc:mysql://localhost:3306/" + base;
+        String user = "root";
+        String password = "marlon";
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection(url,user,password);
+        }catch (ClassNotFoundException | SQLException e){
+            System.err.println(e);
+        }
+        return con;
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -25,7 +55,7 @@ public class Inicio extends  JFrame {
                 JFrame frame = new Inicio();
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.pack();
-                frame.setSize(640, 550);
+                frame.setSize(740, 550);
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }
