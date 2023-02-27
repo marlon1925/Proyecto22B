@@ -9,6 +9,7 @@ public class admin extends Inicio{
     private JTextField cedulaAdmin;
     private JPasswordField contraseñaAdmin;
     private JButton botonInicioAdmin;
+    private JButton regresarButton;
 
     public admin (){
         /*
@@ -27,5 +28,18 @@ public class admin extends Inicio{
               }
             }
         });*/
+
+        regresarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new Inicio();
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.pack();
+                frame.setSize(740, 550);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+            }
+        });
+
     }
 }
