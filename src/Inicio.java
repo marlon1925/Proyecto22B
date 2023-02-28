@@ -10,6 +10,7 @@ public class Inicio extends  JFrame {
     private JLabel Buho;
     private JPanel panel;
 
+
     PreparedStatement ps;
     ResultSet rs;
     Statement st;
@@ -32,7 +33,25 @@ public class Inicio extends  JFrame {
                 dispose();
             }
         });
+
+
+        cajeroButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cajeroInicio frame = new cajeroInicio();
+                frame.setContentPane(frame.cajeroJ);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.pack();
+                frame.setSize(400, 200);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+                dispose();
+            }
+        });
+
     }
+
+
 
     public static Connection getConection(){
         Connection con = null;
