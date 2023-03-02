@@ -17,7 +17,7 @@ public class inicioAdmin extends admin{
                 frame4.setContentPane(frame4.jp_produtos);
                 frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame4.pack();
-                frame4.setSize(400, 200);
+                frame4.setSize(800, 500);
                 frame4.setLocationRelativeTo(null);
                 frame4.setVisible(true);
                 dispose();
