@@ -1,18 +1,18 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-public class admin extends Inicio{
+public class loginAdmin extends Inicio{
     public JPanel admin;
     public JTextField cedulaAdmin;
     private JPasswordField contraseñaAdmin;
     private JButton botonInicioAdmin;
     private JButton regresarButton;
-    static String usuario;
+    public static String usuario;
 
-    public admin (){
+
+    public loginAdmin(){
 
         botonInicioAdmin.addActionListener(new ActionListener() {
             @Override

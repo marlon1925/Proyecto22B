@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-public class productos extends inicioAdmin {
+public class agregarProductos extends inicioAdmin {
     public JPanel jp_produtos;
     private JTextField codigoProdTxt;
     private JTextField nombreProdTxt;
@@ -15,7 +15,7 @@ public class productos extends inicioAdmin {
     private JButton guardarButton;
     private JTable tablaProductos;
 
-    public productos(){
+    public agregarProductos(){
         con = getConection();
         crear_mostrar_productos();
 
