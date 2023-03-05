@@ -84,23 +84,22 @@ public class ventas extends cajeroLogin {
                     ps.setString(5, txtIdtotalProducto.getText());
                     ps.setString(6, usuarioCajero);
                     ps.setString(7, txtIdProductos.getText());
+                    rs = st.executeQuery("SELECT STOCK FROM PRODUCTOS WHERE COD_PROD = '"+txtIdProductos.getText()+"';");
+                    rs.next();
+                    int stockActual = rs.getInt("STOCK");
 
+                    // Restar la cantidad ingresada por el usuario del stock actual
+                    int cantidad = Integer.parseInt(txtCantidadProducto.getText());
+                    int stockNuevo = stockActual - cantidad;
+
+                    // Actualizar el valor de STOCK en la base de datos
+                    st.executeUpdate("UPDATE PRODUCTOS SET STOCK = "+stockNuevo+" WHERE COD_PROD = '"+txtIdProductos.getText()+"';");
                     int res = ps.executeUpdate();
                     if(res > 0){
-                        //JOptionPane.showMessageDialog(null,"Se creo");
-                        st = con.createStatement();
+                        JOptionPane.showMessageDialog(null,"Se creo");
 
                         // Obtener el valor actual de STOCK del producto
-                        rs = st.executeQuery("SELECT STOCK FROM PRODUCTOS WHERE COD_PROD = '"+txtIdProductos.getText()+"';");
-                        rs.next();
-                        int stockActual = rs.getInt("STOCK");
 
-                        // Restar la cantidad ingresada por el usuario del stock actual
-                        int cantidad = Integer.parseInt(txtCantidadProducto.getText());
-                        int stockNuevo = stockActual - cantidad;
-
-                        // Actualizar el valor de STOCK en la base de datos
-                        st.executeUpdate("UPDATE PRODUCTOS SET STOCK = "+stockNuevo+" WHERE COD_PROD = '"+txtIdProductos.getText()+"';");
 
                         txtIdProductos.setText("");
                         txtNombreProducto.setText("");
@@ -112,10 +111,10 @@ public class ventas extends cajeroLogin {
                         actualizarTablaProductos();
 
                     }else {
-                        //JOptionPane.showMessageDialog(null, "No se creo");
+                        JOptionPane.showMessageDialog(null, "No se creo");
                     }
                 } catch (HeadlessException|SQLException ex) {
-                //JOptionPane.showMessageDialog(null,ex);
+                JOptionPane.showMessageDialog(null,ex);
                 }
             }
         });
@@ -181,7 +180,7 @@ public class ventas extends cajeroLogin {
         conectar();
         try{
             st = con.createStatement();
-            rs = st.executeQuery("SELECT COD_VENTA, Producto_Venta, PRECIOPROD_VENTA, CANTIDAD_VENTA, TOTAL FROM VENTAS");
+            rs = st.executeQuery("SELECT * FROM VENTAS");
 
             // Get metadata object
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -240,7 +239,7 @@ public class ventas extends cajeroLogin {
     }
     public void conectar(){
         try{
-            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","12345");
+            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","Pelota2002");
             System.out.println("Conectado");
         } catch (SQLException e) {
             throw new RuntimeException(e);

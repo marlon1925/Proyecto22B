@@ -58,7 +58,7 @@ public class Inicio extends  JFrame {
         String base= "MINIMARKET";
         String url = "jdbc:mysql://127.0.0.1:3306/" + base;
         String user = "root";
-        String password = "12345";
+        String password = "Pelota2002";
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url,user,password);
