@@ -9,7 +9,7 @@ public class loginAdmin extends Inicio{
     public JTextField cedulaAdmin;
     private JPasswordField contraseñaAdmin;
     private JButton botonInicioAdmin;
-    private JButton regresarButton;
+    private JButton botonRegresar;
     public static String usuario;
 
 
@@ -53,7 +53,7 @@ public class loginAdmin extends Inicio{
         });
 
 
-        regresarButton.addActionListener(new ActionListener() {
+        botonRegresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new Inicio();

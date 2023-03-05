@@ -14,6 +14,7 @@ public class agregarProductos extends inicioAdmin {
     private JTextField stockProdTxt;
     private JButton guardarButton;
     public JTable tablaProductos;
+    private JButton regresarBotton;
 
     public agregarProductos(){
         con = getConection();
@@ -46,6 +47,20 @@ public class agregarProductos extends inicioAdmin {
                 }catch (HeadlessException | SQLException f){
                     System.out.println(f);
                 }
+            }
+        });
+
+        regresarBotton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                inicioAdmin frame3 = new inicioAdmin();
+                frame3.setContentPane(frame3.PinicioAdmin);
+                frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame3.pack();
+                frame3.setSize(400, 200);
+                frame3.setLocationRelativeTo(null);
+                frame3.setVisible(true);
+                dispose();
             }
         });
 
