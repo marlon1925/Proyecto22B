@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class cajeroLogin extends Inicio {
@@ -74,5 +75,13 @@ public class cajeroLogin extends Inicio {
                 dispose();
             }
         });
+    }
+    public void conectar(){
+        try{
+            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","12345");
+            System.out.println("Conectado");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

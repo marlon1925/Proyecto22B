@@ -3,10 +3,13 @@ import java.awt.*;
 import javax.swing.table.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 public class agregarProductos extends inicioAdmin {
+    Connection con;
     public JPanel jp_produtos;
     private JTextField codigoProdTxt;
     private JTextField nombreProdTxt;
@@ -17,14 +20,14 @@ public class agregarProductos extends inicioAdmin {
     private JButton regresarBotton;
 
     public agregarProductos(){
-        con = getConection();
+
         crear_mostrar_productos();
 
         nuevoCodigoProd();
         guardarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                con = getConection();
+                conectar();
                 try{
                     ps = con.prepareStatement("INSERT INTO PRODUCTOS (COD_PROD,NOM_PROD,PRECIO, STOCK)" + "VALUES(?,?,?,?)");
 
@@ -75,6 +78,7 @@ public class agregarProductos extends inicioAdmin {
     }
 
     private void nuevoCodigoProd(){
+        conectar();
         try{
             ps = con.prepareStatement("SELECT MAX(COD_PROD) FROM PRODUCTOS");
             rs = ps.executeQuery();
@@ -90,7 +94,9 @@ public class agregarProductos extends inicioAdmin {
     }
 
     public void crear_mostrar_productos() {
+        conectar();
         try {
+
             st = con.createStatement();
             rs = st.executeQuery("SELECT * FROM PRODUCTOS");
 
@@ -128,4 +134,12 @@ public class agregarProductos extends inicioAdmin {
         return "P" + nuevoNumero;
     }
 
+    public void conectar(){
+        try{
+            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","12345");
+            System.out.println("Conectado");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

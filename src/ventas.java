@@ -3,10 +3,13 @@ import java.awt.*;
 import javax.swing.table.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 public class ventas extends cajeroLogin {
+    Connection con;
     public JPanel Jventas ;
     private JTable tablaProductos;
     private JTextField txtIdProductos;
@@ -22,7 +25,7 @@ public class ventas extends cajeroLogin {
     private JButton regresarButton;
 
     public ventas(){
-        con = getConection();
+    conectar();
 
       crear_mostrar_productos();
       crear_mostrar_ventas();
@@ -38,7 +41,7 @@ public class ventas extends cajeroLogin {
           @Override
           public void actionPerformed(ActionEvent e) {
 
-              con = getConection();
+              conectar();
 
               try{
                   st = con.createStatement();
@@ -59,7 +62,7 @@ public class ventas extends cajeroLogin {
         agregarbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                con = getConection();
+                conectar();
 
                 try {
                     // Obtener los valores de los campos de texto y convertirlos a números
@@ -118,8 +121,10 @@ public class ventas extends cajeroLogin {
         });
 
         regresarButton.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
+                conectar();
                 ventas frame6 = new ventas();
                 frame6.setContentPane(frame6.Jventas);
                 frame6.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -133,6 +138,7 @@ public class ventas extends cajeroLogin {
     }
 
     public void crear_mostrar_productos(){
+        conectar();
         try{
             st = con.createStatement();
             rs = st.executeQuery("SELECT * FROM PRODUCTOS");
@@ -172,6 +178,7 @@ public class ventas extends cajeroLogin {
     }
 
     public void crear_mostrar_ventas(){
+        conectar();
         try{
             st = con.createStatement();
             rs = st.executeQuery("SELECT COD_VENTA, Producto_Venta, PRECIOPROD_VENTA, CANTIDAD_VENTA, TOTAL FROM VENTAS");
@@ -211,6 +218,7 @@ public class ventas extends cajeroLogin {
     }
 
     private void nuevoCodigoVenta(){
+        conectar();
         try{
             ps = con.prepareStatement("SELECT MAX(COD_VENTA) FROM VENTAS");
             rs = ps.executeQuery();
@@ -230,7 +238,14 @@ public class ventas extends cajeroLogin {
         String nuevoNumero = String.format("%03d", siguienteNumero);
         return "V" + nuevoNumero;
     }
-
+    public void conectar(){
+        try{
+            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","12345");
+            System.out.println("Conectado");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 }

@@ -3,10 +3,13 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 public class agregarCajero extends inicioAdmin {
+    Connection con;
     private JTextField cedulaCajeroTxt;
     private JTextField nombreCajeroTxt;
     private JTextField apellidoCajeroTxt;
@@ -20,13 +23,13 @@ public class agregarCajero extends inicioAdmin {
     public JPanel JpCajeroAgregar;
 
     public agregarCajero() {
-        con = getConection();
+
         crear_mostrar_cajeros();
 
         crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                con = getConection();
+                conectar();
                 try {
                     // Agregar consulta SELECT para buscar la cédula antes de la inserción
                     ps = con.prepareStatement("SELECT CEDULA_CAJERO FROM CAJERO WHERE CEDULA_CAJERO = ?");
@@ -68,7 +71,7 @@ public class agregarCajero extends inicioAdmin {
         buscarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                con = getConection();
+                conectar();
                 try{
                     st = con.createStatement();
                     rs = st.executeQuery("SELECT * from CAJERO where CEDULA_CAJERO = " + cedulaCajeroTxt.getText());
@@ -87,7 +90,7 @@ public class agregarCajero extends inicioAdmin {
         actualizarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                con = getConection();
+                conectar();
 
                 try{
                     ps = con.prepareStatement("UPDATE CAJERO where CEDULA_CAJERO =" + cedulaCajeroTxt.getText());
@@ -111,9 +114,10 @@ public class agregarCajero extends inicioAdmin {
         });
 
         borrarButton.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                con = getConection();
+                conectar();
                 try{
                     ps = con.prepareStatement("DELETE FROM CAJERO WHERE CEDULA_CAJERO =" + cedulaCajeroTxt.getText());
                     int res = ps.executeUpdate();
@@ -144,6 +148,7 @@ public class agregarCajero extends inicioAdmin {
 
 
         public void crear_mostrar_cajeros() {
+        conectar();
             try {
                 st = con.createStatement();
                 rs = st.executeQuery("SELECT * FROM CAJERO");
@@ -174,7 +179,16 @@ public class agregarCajero extends inicioAdmin {
             } catch (HeadlessException | SQLException f) {
                 System.out.println(f);
             }
+
         }
+    public void conectar(){
+        try{
+            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","12345");
+            System.out.println("Conectado");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
 

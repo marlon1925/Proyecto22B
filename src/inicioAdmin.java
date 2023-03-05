@@ -3,9 +3,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class inicioAdmin extends loginAdmin {
+
     private JButton agregarP;
     private JButton ventasButton;
     private JButton cajerosButton;
