@@ -53,16 +53,18 @@ public class Inicio extends  JFrame {
 
 
     public static Connection getConection(){
+
         Connection con = null;
         String base= "minimarket";
         String url = "jdbc:mysql://localhost:3306/" + base;
         String user = "root";
         //String password = "marlon";
-        //String password = "Pelota2002";
-        String password = "123456";
+        String password = "Pelota2002";
+        /*String password = "123456";*/
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url,user,password);
+            con.setAutoCommit(false);
         }catch (ClassNotFoundException | SQLException e){
             System.err.println(e);
         }

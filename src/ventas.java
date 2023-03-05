@@ -57,7 +57,7 @@ public class ventas extends cajeroInicio{
               try{
 
                   st = con.createStatement();
-                  rs = st.executeQuery("SELECT * FROM PRODUCTOS WHERE COD_PROD = "+txtIdProductos.getText());
+                  rs = st.executeQuery("SELECT * FROM PRODUCTOS WHERE COD_PROD = '"+txtIdProductos.getText()+"';");
 
                   while (rs.next()){
                       txtPrecioProducto.setText(rs.getString("PRECIO"));
@@ -71,7 +71,35 @@ public class ventas extends cajeroInicio{
       });
 
 
-  }
+        agregarbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    con = getConection();
+                    st = con.createStatement();
+
+                    // Obtener el valor actual de STOCK del producto
+                    rs = st.executeQuery("SELECT STOCK FROM PRODUCTOS WHERE COD_PROD = '"+txtIdProductos.getText()+"';");
+                    rs.next();
+                    int stockActual = rs.getInt("STOCK");
+
+                    // Restar la cantidad ingresada por el usuario del stock actual
+                    int cantidad = Integer.parseInt(txtCantidadProducto.getText());
+                    int stockNuevo = stockActual - cantidad;
+
+                    // Actualizar el valor de STOCK en la base de datos
+                    st.executeUpdate("UPDATE PRODUCTOS SET STOCK = "+stockNuevo+" WHERE COD_PROD = '"+txtIdProductos.getText()+"';");
+
+                    // Confirmar la transacción y cerrar la conexión
+                    con.commit();
+                    con.close();
+
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+    }
 
 
 
