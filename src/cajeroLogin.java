@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-public class cajeroInicio extends Inicio {
+public class cajeroLogin extends Inicio {
 
     public JPanel cajeroJ;
     private JTextField txtCedulaCajero;
@@ -12,11 +12,11 @@ public class cajeroInicio extends Inicio {
 
     private JPasswordField contraseñaCajero;
     private JButton botonIngresarCajero;
-    static String usuarioCajero;
+    public static String usuarioCajero;
 
 
 
-    public cajeroInicio(){
+    public cajeroLogin(){
 
         botonIngresarCajero.addActionListener(new ActionListener() {
             @Override

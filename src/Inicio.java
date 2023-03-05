@@ -37,7 +37,7 @@ public class Inicio extends  JFrame {
         cajeroButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cajeroInicio frame = new cajeroInicio();
+                cajeroLogin frame = new cajeroLogin();
                 frame.setContentPane(frame.cajeroJ);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.pack();
@@ -58,9 +58,9 @@ public class Inicio extends  JFrame {
         String base= "minimarket";
         String url = "jdbc:mysql://localhost:3306/" + base;
         String user = "root";
-        //String password = "marlon";
+        String password = "marlon";
         //String password = "Pelota2002";
-        String password = "123456";
+        //String password = "123456";
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url,user,password);
