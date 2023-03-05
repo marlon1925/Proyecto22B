@@ -1,11 +1,45 @@
 import javax.swing.*;
+import java.awt.*;
+import javax.swing.table.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 
 public class ventas extends cajeroInicio{
     public JPanel Jventas ;
-   /* private agregarProductos productos = new agregarProductos();
+    private JTable table1;
+    public ventas(){
+        con = getConection();
+      try{
+          st = con.createStatement();
+          rs = st.executeQuery("SELECT * FROM PRODUCTOS");
 
-    public void mostrarTablaProductos() {
-        JTable tablaProductos = productos.tablaProductos;
-        // Ahora puedes usar la tablaProductos para mostrarla en la interfaz del cajero
-    }*/
+          // Get metadata object
+          ResultSetMetaData rsmd = rs.getMetaData();
+          int columnCount = rsmd.getColumnCount();
+
+          // Create JTable and set model
+          DefaultTableModel model = (DefaultTableModel) table1.getModel();
+
+          // Add columns to table model
+
+          for (int i = 1; i <= columnCount; i++) {
+              model.addColumn(rsmd.getColumnName(i));
+          }
+
+          // Add rows to table model
+          while (rs.next()) {
+              Object[] row = new Object[columnCount];
+              for (int i = 1; i <= columnCount; i++) {
+                  row[i - 1] = rs.getObject(i);
+              }
+              model.addRow(row);
+          }
+
+      }catch (HeadlessException | SQLException f){
+          JOptionPane.showMessageDialog(null,f);
+      }
+  }
+
 }
