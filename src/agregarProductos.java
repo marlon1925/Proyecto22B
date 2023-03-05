@@ -13,7 +13,7 @@ public class agregarProductos extends inicioAdmin {
     private JTextField precioProdTxt;
     private JTextField stockProdTxt;
     private JButton guardarButton;
-    private JTable tablaProductos;
+    public JTable tablaProductos;
 
     public agregarProductos(){
         con = getConection();
