@@ -9,6 +9,13 @@ import java.sql.SQLException;
 public class ventas extends cajeroInicio{
     public JPanel Jventas ;
     private JTable table1;
+    private JTextField txtIdProductos;
+    private JTextField txtPrecioProducto;
+    private JButton agregarbutton;
+    private JButton buscarbotton;
+    private JTextField txtNombreProducto;
+    private JTextField txtCantidadProducto;
+
     public ventas(){
         con = getConection();
       try{
@@ -40,6 +47,32 @@ public class ventas extends cajeroInicio{
       }catch (HeadlessException | SQLException f){
           JOptionPane.showMessageDialog(null,f);
       }
+
+      buscarbotton.addActionListener(new ActionListener() {
+          @Override
+          public void actionPerformed(ActionEvent e) {
+
+              con = getConection();
+
+              try{
+
+                  st = con.createStatement();
+                  rs = st.executeQuery("SELECT * FROM PRODUCTOS WHERE COD_PROD = "+txtIdProductos.getText());
+
+                  while (rs.next()){
+                      txtPrecioProducto.setText(rs.getString("PRECIO"));
+                      txtNombreProducto.setText(rs.getString("NOM_PROD"));
+                  }
+
+              }catch (Exception w){
+                  System.out.println(w);
+              }
+          }
+      });
+
+
   }
+
+
 
 }

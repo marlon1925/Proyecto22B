@@ -41,7 +41,7 @@ public class cajeroInicio extends Inicio {
                         frame6.setContentPane(frame6.Jventas);
                         frame6.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         frame6.pack();
-                        frame6.setSize(400, 200);
+                        frame6.setSize(600, 400);
                         frame6.setLocationRelativeTo(null);
                         frame6.setVisible(true);
                         dispose();

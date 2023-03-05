@@ -58,7 +58,8 @@ public class Inicio extends  JFrame {
         String url = "jdbc:mysql://localhost:3306/" + base;
         String user = "root";
         //String password = "marlon";
-        String password = "Pelota2002";
+        //String password = "Pelota2002";
+        String password = "123456";
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url,user,password);
