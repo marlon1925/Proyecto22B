@@ -9,7 +9,7 @@ public class cajeroInicio extends Inicio {
     private JTextField txtCedulaCajero;
     private JButton regresarButton;
     private JLabel LOGINCAJERO;
-    private JPasswordField passwordField1;
+
     private JPasswordField contraseñaCajero;
     private JButton botonIngresarCajero;
     static String usuarioCajero;
@@ -29,26 +29,26 @@ public class cajeroInicio extends Inicio {
                     char[] passwordCajero = contraseñaCajero.getPassword(); // obtener la contraseña ingresada en el JPasswordField
                     String passwordStringCajero = new String(passwordCajero); // convertir la contraseña de char[] a String
 
-                    String query = "SELECT * FROM minimarket.administrador WHERE CEDULA_CAJERO=? AND CONTRASEÑA_CAJERO=?";
+
+                    String query = "SELECT * FROM minimarket.CAJERO WHERE CEDULA_CAJERO =? AND CONTRASEÑA_CAJERO=?";
                     ps = con.prepareStatement(query);
                     ps.setString(1, usuarioCajero);
                     ps.setString(2, passwordStringCajero);
                     rs = ps.executeQuery();
 
                     if (rs.next()) {
-                        // el usuario y la contraseña son correctos, hacer algo aquí
-                        inicioAdmin frame3 = new inicioAdmin();
-                        frame3.setContentPane(frame3.PinicioAdmin);
-                        frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        frame3.pack();
-                        frame3.setSize(400, 200);
-                        frame3.setLocationRelativeTo(null);
-                        frame3.setVisible(true);
+                        ventas frame6 = new ventas();
+                        frame6.setContentPane(frame6.Jventas);
+                        frame6.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        frame6.pack();
+                        frame6.setSize(400, 200);
+                        frame6.setLocationRelativeTo(null);
+                        frame6.setVisible(true);
                         dispose();
 
                     } else {
                         // el usuario y/o la contraseña son incorrectos, hacer algo aquí
-                        JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos");
+                        //JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos");
                     }
 
                 }catch (SQLException f){

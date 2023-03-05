@@ -1,6 +1,7 @@
-import com.sun.xml.internal.ws.handler.HandlerException;
+
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -10,8 +11,8 @@ public class inicioAdmin extends loginAdmin {
     private JButton ventasButton;
     private JButton cajerosButton;
     public JPanel PinicioAdmin;
-    private JLabel bienvenidoAdmin;
-
+    private JLabel bienvenidoAdmin;}
+/*
     public inicioAdmin(){
         try {
             con = getConection();
@@ -22,7 +23,7 @@ public class inicioAdmin extends loginAdmin {
                 String nombreAdmin = rs.getString("NOMBRE_ADMIN");
                 bienvenidoAdmin.setText("Bienvenido, " + nombreAdmin + "!");
             }
-        } catch (HandlerException | SQLException f) {
+        } catch (HeadlessException | SQLException f) {
             System.out.println(f);
         }
 
@@ -55,3 +56,4 @@ public class inicioAdmin extends loginAdmin {
     }
 
 }
+*/
