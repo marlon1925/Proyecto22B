@@ -1,5 +1,4 @@
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,8 +10,7 @@ public class inicioAdmin extends loginAdmin {
     private JButton ventasButton;
     private JButton cajerosButton;
     public JPanel PinicioAdmin;
-    private JLabel bienvenidoAdmin;}
-/*
+    private JLabel bienvenidoAdmin;
     public inicioAdmin(){
         try {
             con = getConection();
@@ -56,4 +54,3 @@ public class inicioAdmin extends loginAdmin {
     }
 
 }
-*/

@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -45,7 +46,7 @@ public class loginAdmin extends Inicio{
                         // el usuario y/o la contraseña son incorrectos, hacer algo aquí
                         JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos");
                     }
-                } catch (SQLException f) {
+                } catch (HeadlessException | SQLException f) {
                     System.out.println(f);
                 }
             }
