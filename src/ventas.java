@@ -23,6 +23,7 @@ public class ventas extends cajeroLogin {
 
     public ventas(){
         con = getConection();
+
       crear_mostrar_productos();
       crear_mostrar_ventas();
 
@@ -31,7 +32,6 @@ public class ventas extends cajeroLogin {
       txtNombreProducto.setEditable(false);
       txtPrecioProducto.setEditable(false);
       txtIdtotalProducto.setEditable(false);
-      txtIdProductos.setEditable(true);
 
 
         buscarbotton.addActionListener(new ActionListener() {
@@ -41,7 +41,6 @@ public class ventas extends cajeroLogin {
               con = getConection();
 
               try{
-
                   st = con.createStatement();
                   rs = st.executeQuery("SELECT * FROM PRODUCTOS WHERE COD_PROD = '"+txtIdProductos.getText()+"';");
 
@@ -50,7 +49,6 @@ public class ventas extends cajeroLogin {
                       txtNombreProducto.setText(rs.getString("NOM_PROD"));
                       txtIdProductos.setEditable(false);
                   }
-
               }catch (Exception w){
                   System.out.println(w);
               }
@@ -59,13 +57,11 @@ public class ventas extends cajeroLogin {
 
 
         agregarbutton.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 con = getConection();
 
                 try {
-
                     // Obtener los valores de los campos de texto y convertirlos a números
                     double precio = Double.parseDouble(txtPrecioProducto.getText());
                     int cantidad1 = Integer.parseInt(txtCantidadProducto.getText());
@@ -88,7 +84,7 @@ public class ventas extends cajeroLogin {
 
                     int res = ps.executeUpdate();
                     if(res > 0){
-                        JOptionPane.showMessageDialog(null,"Se creo");
+                        //JOptionPane.showMessageDialog(null,"Se creo");
                         st = con.createStatement();
 
                         // Obtener el valor actual de STOCK del producto
@@ -113,12 +109,10 @@ public class ventas extends cajeroLogin {
                         actualizarTablaProductos();
 
                     }else {
-                        JOptionPane.showMessageDialog(null, "No se creo");
+                        //JOptionPane.showMessageDialog(null, "No se creo");
                     }
-
-
                 } catch (HeadlessException|SQLException ex) {
-                JOptionPane.showMessageDialog(null,ex);
+                //JOptionPane.showMessageDialog(null,ex);
                 }
             }
         });
@@ -205,7 +199,7 @@ public class ventas extends cajeroLogin {
             }
 
         }catch (HeadlessException | SQLException f){
-            JOptionPane.showMessageDialog(null,f);
+            //JOptionPane.showMessageDialog(null,f);
         }
     }
 
@@ -227,7 +221,7 @@ public class ventas extends cajeroLogin {
                 txtIdCodigoVenta.setEditable(false);
             }
         }catch (HeadlessException | SQLException f){
-            JOptionPane.showMessageDialog(null,f);
+            //JOptionPane.showMessageDialog(null,f);
         }
     }
     public String siguienteCodigo(String ultimoCodigo) {
