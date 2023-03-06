@@ -18,12 +18,18 @@ public class agregarProductos extends inicioAdmin {
     private JButton guardarButton;
     public JTable tablaProductos;
     private JButton regresarBotton;
+    private JButton buscarButton;
+    private JButton eliminarButton;
+    private JButton actualizarButton;
+    private JTextField txtBuscar;
+    private JButton limpiarButton;
+
 
     public agregarProductos(){
 
         crear_mostrar_productos();
-
         nuevoCodigoProd();
+
         guardarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -66,6 +72,97 @@ public class agregarProductos extends inicioAdmin {
                 dispose();
             }
         });
+
+        eliminarButton.setEnabled(false);
+        actualizarButton.setEnabled(false);
+
+        buscarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                actualizarButton.setEnabled(true);
+                eliminarButton.setEnabled(true);
+                conectar();
+
+                try {
+                    ps = con.prepareStatement("SELECT * FROM PRODUCTOS WHERE COD_PROD = ?");
+                    ps.setString(1, txtBuscar.getText());
+
+                    rs = ps.executeQuery();
+
+                    if (rs.next()) {
+                        nombreProdTxt.setText(rs.getString("NOM_PROD"));
+                        precioProdTxt.setText(rs.getString("PRECIO"));
+                        stockProdTxt.setText(rs.getString("STOCK"));
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El código " + txtBuscar.getText() + " no existe.");
+                    }
+
+                } catch (SQLException f) {
+                    System.out.println(f);
+                }
+            }
+        });
+
+
+        limpiarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nombreProdTxt.setText("");
+                precioProdTxt.setText("");
+                stockProdTxt.setText("");
+            }
+        });
+
+        actualizarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                conectar();
+
+                try {
+                    ps = con.prepareStatement("UPDATE PRODUCTOS SET NOM_PROD = ?, PRECIO = ?, STOCK = ? WHERE COD_PROD = ?");
+                    ps.setString(1, nombreProdTxt.getText());
+                    ps.setDouble(2, Double.parseDouble(precioProdTxt.getText()));
+                    ps.setInt(3, Integer.parseInt(stockProdTxt.getText()));
+                    ps.setString(4, txtBuscar.getText());
+
+                    int rest = ps.executeUpdate();
+
+                    if (rest > 0) {
+                        JOptionPane.showMessageDialog(null, "ACTUALIZADO");
+                        actualizarTablaProductos();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL ACTUALIZAR");
+                    }
+                } catch (HeadlessException | SQLException w) {
+                    System.out.println(w);
+                }
+            }
+        });
+
+        eliminarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                conectar();
+
+                try {
+                    ps = con.prepareStatement("DELETE FROM PRODUCTOS WHERE COD_PROD = ?");
+                    ps.setString(1, txtBuscar.getText());
+
+                    int rest = ps.executeUpdate();
+
+                    if (rest > 0) {
+                        JOptionPane.showMessageDialog(null, "BORRADO CON EXITO");
+                        actualizarTablaProductos();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
+                    }
+                } catch (HeadlessException | SQLException f) {
+                    System.out.println(f);
+                }
+            }
+        });
+
+
 
     }
 
