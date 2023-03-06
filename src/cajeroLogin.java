@@ -49,7 +49,7 @@ public class cajeroLogin extends Inicio {
 
                     } else {
                         // el usuario y/o la contraseña son incorrectos, hacer algo aquí
-                        //JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos");
+                        JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos");
                         // aqui falta codigo
                         //tonto verga de marlon
                     }
