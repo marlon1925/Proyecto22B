@@ -1,4 +1,4 @@
-# Proyecto22B
+# Proyecto final de Programación Orientada a Objetos
 ------------------
 
 Integrantes: 
