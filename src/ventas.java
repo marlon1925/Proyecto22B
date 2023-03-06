@@ -170,7 +170,7 @@ public class ventas extends cajeroLogin {
                 frame6.setContentPane(frame6.panel);
                 frame6.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame6.pack();
-                frame6.setSize(600, 400);
+                frame6.setSize(740, 550);
                 frame6.setLocationRelativeTo(null);
                 frame6.setVisible(true);
                 dispose();
@@ -348,7 +348,7 @@ public class ventas extends cajeroLogin {
                 txtIdCodigoVenta.setEditable(false);
             }
         }catch (HeadlessException | SQLException f){
-            //JOptionPane.showMessageDialog(null,f);
+            JOptionPane.showMessageDialog(null,f);
         }
     }
     public String siguienteCodigo(String ultimoCodigo) {
@@ -360,8 +360,8 @@ public class ventas extends cajeroLogin {
 
     public void conectar(){
         try{
-            //con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","Pelota2002");
-            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","123456");
+            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","Pelota2002");
+            //con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","123456");
             System.out.println("Conectado");
         } catch (SQLException e) {
             throw new RuntimeException(e);

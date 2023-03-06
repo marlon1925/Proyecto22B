@@ -78,8 +78,8 @@ public class cajeroLogin extends Inicio {
     }
     public void conectar(){
         try{
-            //con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","Pelota2002");
-            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","123456");
+            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","Pelota2002");
+           // con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","123456");
             System.out.println("Conectado");
         } catch (SQLException e) {
             throw new RuntimeException(e);

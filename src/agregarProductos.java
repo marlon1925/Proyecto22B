@@ -66,7 +66,7 @@ public class agregarProductos extends inicioAdmin {
                 frame3.setContentPane(frame3.PinicioAdmin);
                 frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame3.pack();
-                frame3.setSize(400, 200);
+                frame3.setSize(400, 400);
                 frame3.setLocationRelativeTo(null);
                 frame3.setVisible(true);
                 dispose();
@@ -234,7 +234,9 @@ public class agregarProductos extends inicioAdmin {
     public void conectar(){
         try{
             //con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","12345");
-            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","123456");
+            //con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","123456");
+            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","Pelota2002");
+
             System.out.println("Conectado");
         } catch (SQLException e) {
             throw new RuntimeException(e);

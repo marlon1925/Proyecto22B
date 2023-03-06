@@ -37,7 +37,7 @@ public class loginAdmin extends Inicio{
                         frame3.setContentPane(frame3.PinicioAdmin);
                         frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         frame3.pack();
-                        frame3.setSize(400, 200);
+                        frame3.setSize(400, 400);
                         frame3.setLocationRelativeTo(null);
                         frame3.setVisible(true);
                         dispose();

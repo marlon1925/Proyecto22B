@@ -34,7 +34,7 @@ public class ventasMostrarAdmin extends inicioAdmin{
                 frame6.setContentPane(frame6.PinicioAdmin);
                 frame6.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame6.pack();
-                frame6.setSize(600, 400);
+                frame6.setSize(400, 400);
                 frame6.setLocationRelativeTo(null);
                 frame6.setVisible(true);
                 dispose();
@@ -113,7 +113,9 @@ public class ventasMostrarAdmin extends inicioAdmin{
     public void conectar(){
         try{
             //con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","12345");
-            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","123456");
+            //con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","123456");
+            con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","Pelota2002");
+
             System.out.println("Conectado");
         } catch (SQLException e) {
             throw new RuntimeException(e);
