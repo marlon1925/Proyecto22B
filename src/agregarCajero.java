@@ -21,6 +21,7 @@ public class agregarCajero extends inicioAdmin {
     private JButton actualizarButton;
     private JTable tablaCajero;
     public JPanel JpCajeroAgregar;
+    private JButton regresarButtonAdminCajero;
 
     public agregarCajero() {
 
@@ -135,6 +136,20 @@ public class agregarCajero extends inicioAdmin {
                 }
             }
         });
+
+        regresarButtonAdminCajero.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                inicioAdmin frame3 = new inicioAdmin();
+                frame3.setContentPane(frame3.PinicioAdmin);
+                frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame3.pack();
+                frame3.setSize(400, 200);
+                frame3.setLocationRelativeTo(null);
+                frame3.setVisible(true);
+                dispose();
+            }
+        });
     }
 
 
@@ -181,6 +196,8 @@ public class agregarCajero extends inicioAdmin {
             }
 
         }
+
+
     public void conectar(){
         try{
             //con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","Pelota2002");

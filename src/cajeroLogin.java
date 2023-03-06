@@ -81,7 +81,6 @@ public class cajeroLogin extends Inicio {
             //con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","Pelota2002");
             con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/MINIMARKET","root","123456");
             System.out.println("Conectado");
-            System.out.println("hola");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

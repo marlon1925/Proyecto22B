@@ -7,7 +7,7 @@ public class Inicio extends  JFrame {
     private JButton Admin;
     private JButton cajeroButton;
     private JLabel Buho;
-    private JPanel panel;
+    public JPanel panel;
 
 
     PreparedStatement ps;
