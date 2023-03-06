@@ -1,4 +1,10 @@
 # Proyecto22B
+CAPTURAS DE PANTALLA
+
+![image](https://user-images.githubusercontent.com/117753844/223015979-bd890804-8319-465e-b360-43be4938cd4c.png)
+
+
+![image](https://user-images.githubusercontent.com/117753844/223016007-0138eb31-6b52-4ca2-b50a-a0dbabc1462a.png)
 
 --- 
 BD
